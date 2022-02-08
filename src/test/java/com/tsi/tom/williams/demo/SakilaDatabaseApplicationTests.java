@@ -12,10 +12,5 @@ class SakilaDatabaseApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	public void testTesting(){
-		boolean testReturn = SakilaDatabaseApplication.testTest();
-		assertEquals(true, testReturn,"Test didnt return expected boolean.");
-	}
 
 }
