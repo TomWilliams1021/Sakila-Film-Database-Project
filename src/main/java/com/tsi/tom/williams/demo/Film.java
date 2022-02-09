@@ -1,11 +1,13 @@
 package com.tsi.tom.williams.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Film {
+@Table(name = "film")
+public class Film implements Serializable {
 
     @Id
     @GeneratedValue
@@ -18,6 +20,16 @@ public class Film {
     private String rating;
     //private double replacement_cost;  May need to be added if you decide to do sales.
     private String special_features;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @JoinTable(name = "film_actor",
+            joinColumns = {
+                @JoinColumn(name = "film_id", referencedColumnName = "film_id",
+                    nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "actor_id", referencedColumnName = "actor_id",
+                    nullable = false, updatable = false)})
+    private Set<Actor> actors = new HashSet<>();
 
     public Film(String title, String description, int language_id, int length, String rating, String special_features){
         this.title = title;
@@ -81,5 +93,13 @@ public class Film {
 
     public void setSpecial_features(String special_features) {
         this.special_features = special_features;
+    }
+
+    public Set<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(Set<Actor> actors) {
+        this.actors = actors;
     }
 }

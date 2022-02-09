@@ -12,9 +12,14 @@ public class SakilaDatabaseApplication {
 
 	@Autowired
 	private LanguageRepository languageRepository;
+	@Autowired
 	private ActorRepository actorRepository;
+	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
 	private FilmRepository filmRepository;
+
+	private String save = "Saved";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository, ActorRepository actorRepository, CategoryRepository categoryRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
@@ -27,6 +32,16 @@ public class SakilaDatabaseApplication {
 
 		SpringApplication.run(SakilaDatabaseApplication.class, args);
 	}
+
+
+	@PostMapping("/addLanguage")
+	public @ResponseBody
+	String addLanguage(@RequestParam String name) {
+		Language addLanguage = new Language(name);
+		languageRepository.save(addLanguage);
+		return save;
+	}
+
 
 	@GetMapping("/AllLanguages")
 	public @ResponseBody

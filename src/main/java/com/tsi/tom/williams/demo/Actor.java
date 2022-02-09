@@ -1,12 +1,13 @@
 package com.tsi.tom.williams.demo;
 
-import javax.annotation.processing.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Actor {
+@Table(name = "actor")
+public class Actor implements Serializable {
 
     @Id
     @GeneratedValue
@@ -14,6 +15,9 @@ public class Actor {
 
     private String first_name;
     private String last_name;
+
+    @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
+    private Set<Film> films = new HashSet<>();
 
     public Actor(String first_name, String last_name){
         this.first_name = first_name;
@@ -42,5 +46,13 @@ public class Actor {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public Set<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(Set<Film> films) {
+        this.films = films;
     }
 }
