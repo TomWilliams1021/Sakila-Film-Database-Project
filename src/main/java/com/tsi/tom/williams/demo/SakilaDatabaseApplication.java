@@ -14,11 +14,13 @@ public class SakilaDatabaseApplication {
 	private LanguageRepository languageRepository;
 	private ActorRepository actorRepository;
 	private CategoryRepository categoryRepository;
+	private FilmRepository filmRepository;
 
-	public SakilaDatabaseApplication(LanguageRepository languageRepository, ActorRepository actorRepository, CategoryRepository categoryRepository){
+	public SakilaDatabaseApplication(LanguageRepository languageRepository, ActorRepository actorRepository, CategoryRepository categoryRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
 		this.actorRepository = actorRepository;
 		this.categoryRepository = categoryRepository;
+		this.filmRepository = filmRepository;
 	}
 
 	public static void main(String[] args) {
@@ -43,6 +45,13 @@ public class SakilaDatabaseApplication {
 	Iterable<Category> GetAllCategorys(){
 		return categoryRepository.findAll();
 	}
+
+	@GetMapping("/AllFilms")
+	public @ResponseBody
+	Iterable<Film> GetAllFilms(){
+		return filmRepository.findAll();
+	}
+
 	public static boolean testTest(){
 		return true;
 	}
