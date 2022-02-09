@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class menuCucumberStepsDeaf {
-    /*
+
     @Given("I have chosen a film")
     public void i_have_chosen_a_film() {
         // Write code here that turns the phrase above into concrete actions
@@ -21,5 +21,5 @@ public class menuCucumberStepsDeaf {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-    */
+
 }
