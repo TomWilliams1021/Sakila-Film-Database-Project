@@ -67,7 +67,4 @@ public class SakilaDatabaseApplication {
 		return filmRepository.findAll();
 	}
 
-	public static boolean testTest(){
-		return true;
-	}
 }
