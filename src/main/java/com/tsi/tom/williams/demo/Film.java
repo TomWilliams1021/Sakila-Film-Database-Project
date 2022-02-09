@@ -23,6 +23,7 @@ public class Film implements Serializable {
     //private double replacement_cost;  May need to be added if you decide to do sales.
     private String special_features;
 
+    //Maping the many to many relationship between Film and Actor into Film.
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     @JoinTable(name = "film_actor",
             joinColumns = {
@@ -32,6 +33,16 @@ public class Film implements Serializable {
                 @JoinColumn(name = "actor_id", referencedColumnName = "actor_id",
                     nullable = false, updatable = false)})
     private Set<Actor> actors = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name =  "film_category",
+            joinColumns = {
+                @JoinColumn(name = "film_id", referencedColumnName = "film_id",
+                    nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "category_id", referencedColumnName = "category_id",
+                    nullable = false, updatable = false)})
+    private Set<Category> category = new HashSet<>();
 
     public Film(String title, String description, int language_id, int length, String rating, String special_features){
         this.title = title;
@@ -103,5 +114,13 @@ public class Film implements Serializable {
 
     public void setActors(Set<Actor> actors) {
         this.actors = actors;
+    }
+
+    public Set<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(Set<Category> category) {
+        this.category = category;
     }
 }

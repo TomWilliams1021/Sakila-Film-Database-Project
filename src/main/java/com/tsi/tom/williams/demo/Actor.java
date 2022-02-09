@@ -18,6 +18,7 @@ public class Actor implements Serializable {
     private String first_name;
     private String last_name;
 
+    //Maping the many to many relationship between Film and Actor into Film.
     @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Film> films = new HashSet<>();
