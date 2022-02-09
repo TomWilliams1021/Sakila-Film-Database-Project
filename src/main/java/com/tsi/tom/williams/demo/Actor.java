@@ -1,5 +1,7 @@
 package com.tsi.tom.williams.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -17,6 +19,7 @@ public class Actor implements Serializable {
     private String last_name;
 
     @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Film> films = new HashSet<>();
 
     public Actor(String first_name, String last_name){
