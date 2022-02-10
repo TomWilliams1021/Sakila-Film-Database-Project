@@ -13,7 +13,7 @@ public class CategoryTest {
 
     private Category testCategory = new Category("testCategoryName");
     private Set<Film> testFilm = new HashSet<>(){{
-        testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
+        add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
     }};
 
     @Test
@@ -34,13 +34,14 @@ public class CategoryTest {
 
     @Test
     public void testGetFilms(){
-        assertEquals(testFilm, testCategory.getFilms(), "The setFilms method in Actor did not set the film set to the expected value.");
+        testCategory.setFilms(testFilm);
+        assertEquals(testFilm, testCategory.getFilms(), "The getFilms method in Category did not get the expected film set value.");
     }
 
     @Test
     public void testSetFilms(){
-        testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
+        testFilm.add (new Film("Test Film 2", "Test Description 2", 1, 90, "PG", "Test Special Features"));
         testCategory.setFilms(testFilm);
-        assertEquals(testFilm, testCategory.getFilms(), "The setFilms method in Actor did not set the film set to the expected value.");
+        assertEquals(testFilm, testCategory.getFilms(), "The setFilms method in Category did not set the film set to the expected value.");
     }
 }
