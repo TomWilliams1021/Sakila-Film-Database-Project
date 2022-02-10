@@ -26,7 +26,7 @@ public class Category {
     public Category(){
     }
 
-    public int getCategory_id() {
+    public int getCategoryId() {
         return category_id;
     }
 
