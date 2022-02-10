@@ -12,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CategoryTest {
 
     private Category testCategory = new Category("testCategoryName");
-    private Set<Film> testFilm = new HashSet<>();
+    private Set<Film> testFilm = new HashSet<>(){{
+        testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
+    }};
 
     @Test
     public void testGetCategoryId(){
@@ -31,17 +33,14 @@ public class CategoryTest {
     }
 
     @Test
-    public void testSetFilms(){
-        testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
-        testCategory.setFilms(testFilm);
+    public void testGetFilms(){
         assertEquals(testFilm, testCategory.getFilms(), "The setFilms method in Actor did not set the film set to the expected value.");
     }
 
     @Test
-    public void testGetFilms(){
+    public void testSetFilms(){
         testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
         testCategory.setFilms(testFilm);
         assertEquals(testFilm, testCategory.getFilms(), "The setFilms method in Actor did not set the film set to the expected value.");
-
     }
 }

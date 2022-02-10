@@ -34,6 +34,7 @@ public class Film implements Serializable {
                     nullable = false, updatable = false)})
     private Set<Actor> actors = new HashSet<>();
 
+    //Maping the many to many relationship between Film and Category into Film.
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name =  "film_category",
             joinColumns = {
@@ -56,7 +57,7 @@ public class Film implements Serializable {
     public Film(){
     }
 
-    public int getFilm_id() {
+    public int getFilmId() {
         return film_id;
     }
 
@@ -76,11 +77,11 @@ public class Film implements Serializable {
         this.description = description;
     }
 
-    public int getLanguage_id() {
+    public int getLanguageId() {
         return language_id;
     }
 
-    public void setLanguage_id(int language_id) {
+    public void setLanguageId(int language_id) {
         this.language_id = language_id;
     }
 
@@ -100,11 +101,11 @@ public class Film implements Serializable {
         this.rating = rating;
     }
 
-    public String getSpecial_features() {
+    public String getSpecialFeatures() {
         return special_features;
     }
 
-    public void setSpecial_features(String special_features) {
+    public void setSpecialFeatures(String special_features) {
         this.special_features = special_features;
     }
 
