@@ -19,11 +19,9 @@ public class Language {
         this.name = name;
     }
 
-    public Language(){
+    public Language(){}
 
-    }
-
-    public int getLanguage_id() {
+    public int getLanguageId() {
         return language_id;
     }
 

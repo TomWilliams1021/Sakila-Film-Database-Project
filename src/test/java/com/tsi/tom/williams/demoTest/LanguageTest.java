@@ -11,7 +11,7 @@ public class LanguageTest {
 
     @Test
     public void testGetLanguageId(){
-        assertEquals(0, testLanguage.getLanguage_id(), "getLanguageId method did not return the expected id value.");
+        assertEquals(0, testLanguage.getLanguageId(), "getLanguageId method did not return the expected id value.");
     }
 
     @Test
@@ -23,5 +23,11 @@ public class LanguageTest {
     public void testSetLanguageName(){
         testLanguage.setName("French");
         assertEquals("French", testLanguage.getName(), "setName method for Language did not set the name correctly.");
+    }
+
+    @Test
+    public void testEmptyLanguageConstructor(){
+        testLanguage = new Language();
+        assertEquals(null, testLanguage.getName(), "Default empty Language constructor did not work as intended.");
     }
 }
