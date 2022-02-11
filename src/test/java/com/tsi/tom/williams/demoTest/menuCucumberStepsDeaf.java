@@ -37,8 +37,10 @@ public class menuCucumberStepsDeaf {
         sakilaDBApp = new SakilaDatabaseApplication(languageRepository, actorRepository, categoryRepository, filmRepository);
     }
 
-    Language storedLanguage;
     String actualResult;
+    String expectedResult = "Saved";
+
+    Language storedLanguage;
     @Given("We have a language entry to add")
     public void we_have_a_language_entry_to_add() {
         setup();
@@ -50,7 +52,6 @@ public class menuCucumberStepsDeaf {
     }
     @Then("The language should be added and we should return that the new language was saved")
     public void The_language_should_be_added() {
-        String expectedResult = "Saved";
         Assertions.assertEquals(expectedResult, actualResult, "Save new language failed.");
 
         ArgumentCaptor<Language> languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
@@ -58,4 +59,66 @@ public class menuCucumberStepsDeaf {
         languageArgumentCaptor.getValue();
     }
 
+    Actor storedActor;
+    @Given("We have a new Actor to add")
+    public void weHaveANewActorToAdd() {
+        setup();
+        storedActor = new Actor("Test", "Actor");
+    }
+
+    @When("We add the new Actor")
+    public void weAddTheNewActor() {
+        actualResult = sakilaDBApp.addActor(storedActor.getFirstName(), storedActor.getLastName());
+    }
+
+    @Then("The new Actor should be added and a saved conformation returned")
+    public void theNewActorShouldBeAddedAndASavedConformationReturned() {
+        Assertions.assertEquals(expectedResult, actualResult, "Save new Actor failed.");
+
+        ArgumentCaptor<Actor> actorArgumentCaptor = ArgumentCaptor.forClass(Actor.class);
+        verify(actorRepository).save(actorArgumentCaptor.capture());
+        actorArgumentCaptor.getValue();
+    }
+
+    Category storedCategory;
+    @Given("We have a new Category to add")
+    public void weHaveANewCategoryToAdd() {
+        setup();
+        storedCategory = new Category("TestCat");
+    }
+
+    @When("We add the new Category")
+    public void weAddTheNewCategory() {
+        actualResult = sakilaDBApp.addCategory(storedCategory.getName());
+    }
+
+    @Then("The new Category should be added and a saved conformation returned")
+    public void theNewCategoryShouldBeAddedAndASavedConformationReturned() {
+        Assertions.assertEquals(expectedResult, actualResult, "Save new Category failed.");
+
+        ArgumentCaptor<Category> categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
+        verify(categoryRepository).save(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
+    }
+
+    Film storedFilm;
+    @Given("We have a new Film to add")
+    public void weHaveANewFilmToAdd() {
+        setup();
+        storedFilm = new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features");
+    }
+
+    @When("We add the new Film")
+    public void weAddTheNewFilm() {
+        actualResult = sakilaDBApp.addFilm(storedFilm.getTitle(), storedFilm.getDescription(), storedFilm.getRelease_year(), storedFilm.getLanguageId(), storedFilm.getLength(), storedFilm.getRating(), storedFilm.getSpecialFeatures());
+    }
+
+    @Then("The new Film should be added and a saved conformation returned")
+    public void theNewFilmShouldBeAddedAndASavedConformationReturned() {
+        Assertions.assertEquals(expectedResult, actualResult, "Save new Film failed.");
+
+        ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+        verify(filmRepository).save(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+    }
 }
