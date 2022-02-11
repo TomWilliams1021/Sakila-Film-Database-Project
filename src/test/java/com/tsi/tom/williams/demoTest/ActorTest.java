@@ -43,14 +43,14 @@ public class ActorTest {
 
     @Test
     public void testSetFilms(){
-        testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
+        testFilm.add (new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features"));
         testActor.setFilms(testFilm);
         assertEquals(testFilm, testActor.getFilms(), "The setFilms method in Actor did not set the film set to the expected value.");
     }
 
     @Test
     public void testGetFilms(){
-        testFilm.add (new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features"));
+        testFilm.add (new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features"));
         testActor.setFilms(testFilm);
         assertEquals(testFilm, testActor.getFilms(), "The getFilms method in Actor did not return the expected film set.");
     }

@@ -10,7 +10,7 @@ import java.util.Set;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int category_id;
 
     private String name;

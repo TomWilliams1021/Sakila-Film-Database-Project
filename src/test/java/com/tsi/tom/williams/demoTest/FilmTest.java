@@ -12,10 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilmTest {
 
-    private Film testFilm = new Film("Test Film", "Test Description", 1, 90, "PG", "Test Special Features");
+    private Film testFilm = new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features");
+
     private Set<Actor> testActorSet = new HashSet<>(){{
         add(new Actor("Test","Actor"));
     }};
+
     private Set<Category> testCategorySet = new HashSet<>(){{
         add(new Category("testCategoryName"));
     }};

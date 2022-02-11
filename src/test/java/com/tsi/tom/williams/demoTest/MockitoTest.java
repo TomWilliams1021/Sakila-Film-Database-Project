@@ -42,4 +42,9 @@ public class MockitoTest {
         Assertions.assertEquals(expected, actual, "Data was not added into the test database.");
     }
 
+    @Test
+    public void testGetLanguageMapping(){
+
+    }
+
 }

@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "actor")
+//@Table(name = "actor")
 public class Actor implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int actor_id;
 
     private String first_name;

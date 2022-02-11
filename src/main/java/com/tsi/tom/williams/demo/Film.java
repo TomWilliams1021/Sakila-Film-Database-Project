@@ -8,19 +8,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "film")
+//@Table(name = "film")
 public class Film implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int film_id;
 
     private String title;
     private String description;
+    private int release_year;
     private int language_id;
+    //private int original_language_id;
+    private int rental_duration;
+    private double rental_rate;
     private int length;
+    private double replacement_cost;  //May need to be added if you decide to do sales.
     private String rating;
-    //private double replacement_cost;  May need to be added if you decide to do sales.
     private String special_features;
 
     //Maping the many to many relationship between Film and Actor into Film.
@@ -45,14 +49,31 @@ public class Film implements Serializable {
                     nullable = false, updatable = false)})
     private Set<Category> category = new HashSet<>();
 
-    public Film(String title, String description, int language_id, int length, String rating, String special_features){
+    public Film(String title, String description, int release_year, int language_id, int length, String rating, String special_features){
         this.title = title;
         this.description = description;
+        this.release_year = release_year;
         this.language_id = language_id;
         this.length = length;
         this.rating = rating;
         this.special_features = special_features;
     }
+
+    /*
+    public Film(String title, String description, int release_year, int language_id, int rental_duration, double rental_rate, int length, double replacement_cost, String rating, String special_features){
+        this.title = title;
+        this.description = description;
+        this.language_id = language_id;
+        this.release_year = release_year;
+        //this.original_language_id = original_language_id;
+        this.rental_duration = rental_duration;
+        this.rental_rate = rental_rate;
+        this.length = length;
+        this.replacement_cost = replacement_cost;
+        this.rating = rating;
+        this.special_features = special_features;
+    }
+     */
 
     public Film(){
     }
@@ -75,6 +96,14 @@ public class Film implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getRelease_year() {
+        return release_year;
+    }
+
+    public void setRelease_year(int release_year) {
+        this.release_year = release_year;
     }
 
     public int getLanguageId() {

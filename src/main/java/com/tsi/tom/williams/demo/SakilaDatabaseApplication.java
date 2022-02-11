@@ -34,11 +34,35 @@ public class SakilaDatabaseApplication {
 	}
 
 
-	@PostMapping("/addLanguage")
+	@PostMapping("/AddLanguage")
 	public @ResponseBody
 	String addLanguage(@RequestParam String name) {
 		Language addLanguage = new Language(name);
 		languageRepository.save(addLanguage);
+		return save;
+	}
+
+	@PostMapping("/AddActor")
+	public @ResponseBody
+	String addActor(@RequestParam String first_name, String last_name){
+		Actor addActor = new Actor(first_name, last_name);
+		actorRepository.save(addActor);
+		return save;
+	}
+
+	@PostMapping("/AddFilm")
+	public @ResponseBody
+	String addFilm(@RequestParam String title, String description, int release_year, int language_id, int length, String rating, String special_features){
+		Film addFilm = new Film(title, description, release_year, language_id, length, rating, special_features);
+		filmRepository.save(addFilm);
+		return save;
+	}
+
+	@PostMapping("/AddCategory")
+	public @ResponseBody
+	String addCategory(@RequestParam String name){
+		Category addCategory = new Category(name);
+		categoryRepository.save(addCategory);
 		return save;
 	}
 
