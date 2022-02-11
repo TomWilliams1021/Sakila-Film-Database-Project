@@ -39,12 +39,41 @@ public class MockitoTest {
         ArgumentCaptor<Language>languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);   //Since the fake DB doesn't actually exist, this will hold the data for the duration of the test.
         verify(languageRepository).save(languageArgumentCaptor.capture());  //Saving test data to the argument captor.
         languageArgumentCaptor.getValue();
-        Assertions.assertEquals(expected, actual, "Data was not added into the test database.");
+        Assertions.assertEquals(expected, actual, "Data was not added into the Language test database.");
     }
 
     @Test
-    public void testGetLanguageMapping(){
+    public void testAddFilm(){
+        Film saveFilm = new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features");
+        String expected = "Saved";
+        String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(), saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLanguageId(), saveFilm.getLength(), saveFilm.getRating(), saveFilm.getSpecialFeatures());
+        ArgumentCaptor<Film>filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+        verify(filmRepository).save(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data was not added into the Film test database.");
 
+    }
+
+    @Test
+    public void testAddCategory(){
+        Category saveCategory = new Category(("Test Category"));
+        String expected = "Saved";
+        String actual = sakilaDatabaseApplication.addCategory(saveCategory.getName());
+        ArgumentCaptor<Category>categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
+        verify(categoryRepository).save(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data was not added into the Category test database.");
+    }
+
+    @Test
+    public void testAddActor(){
+        Actor saveActor = new Actor("Test","Actor");
+        String expected = "Saved";
+        String actual = sakilaDatabaseApplication.addActor(saveActor.getFirstName(), saveActor.getLastName());
+        ArgumentCaptor<Actor>actorArgumentCaptor = ArgumentCaptor.forClass(Actor.class);
+        verify(actorRepository).save(actorArgumentCaptor.capture());
+        actorArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "Data was not added into the Actor test database.");
     }
 
 }

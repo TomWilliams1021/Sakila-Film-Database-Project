@@ -52,6 +52,17 @@ public class FilmTest {
     }
 
     @Test
+    public void testGetFilmReleaseYear(){
+        assertEquals(2006, testFilm.getRelease_year(), "getReleaseYear method for Film did not return the expected ReleaseYear integer.");
+    }
+
+    @Test
+    public void testSetFilmReleaseYear(){
+        testFilm.setRelease_year(2020);
+        assertEquals(2020, testFilm.getRelease_year(), "setReleaseYear method for Film did not set the ReleaseYear integer to the expected value.");
+    }
+
+    @Test
     public void testGetFilmLanguageId(){
         assertEquals(1, testFilm.getLanguageId(), "getLanguageId method for Film did not return the expected Id integer.");
     }
