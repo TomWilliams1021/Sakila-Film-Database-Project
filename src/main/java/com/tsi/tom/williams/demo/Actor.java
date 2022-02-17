@@ -23,9 +23,9 @@ public class Actor implements Serializable {
     @JsonIgnore
     private Set<Film> films = new HashSet<>();
 
-    public Actor(String first_name, String last_name){
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Actor(String firstName, String lastName){
+        this.first_name = firstName;
+        this.last_name = lastName;
     }
 
     public Actor(){
@@ -40,16 +40,16 @@ public class Actor implements Serializable {
         return first_name;
     }
 
-    public void setFirstName(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.first_name = firstName;
     }
 
     public String getLastName() {
         return last_name;
     }
 
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.last_name = lastName;
     }
 
     public Set<Film> getFilms() {

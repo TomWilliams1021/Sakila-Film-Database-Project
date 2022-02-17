@@ -1,7 +1,5 @@
 package com.tsi.tom.williams.demo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -19,9 +17,6 @@ public class Film implements Serializable {
     private String description;
     private int release_year;
     private int language_id;
-    //private int original_language_id;
-    private int rental_duration;
-    private double rental_rate;
     private int length;
     private double replacement_cost;  //May need to be added if you decide to do sales.
     private String rating;
@@ -49,31 +44,16 @@ public class Film implements Serializable {
                     nullable = false, updatable = false)})
     private Set<Category> category = new HashSet<>();
 
-    public Film(String title, String description, int release_year, int language_id, int length, String rating, String special_features){
+    public Film(String title, String description, int releaseYear, int languageId, int length, String rating, String specialFeatures){
         this.title = title;
         this.description = description;
-        this.release_year = release_year;
-        this.language_id = language_id;
+        this.release_year = releaseYear;
+        this.language_id = languageId;
         this.length = length;
         this.rating = rating;
-        this.special_features = special_features;
+        this.special_features = specialFeatures;
     }
 
-    /*
-    public Film(String title, String description, int release_year, int language_id, int rental_duration, double rental_rate, int length, double replacement_cost, String rating, String special_features){
-        this.title = title;
-        this.description = description;
-        this.language_id = language_id;
-        this.release_year = release_year;
-        //this.original_language_id = original_language_id;
-        this.rental_duration = rental_duration;
-        this.rental_rate = rental_rate;
-        this.length = length;
-        this.replacement_cost = replacement_cost;
-        this.rating = rating;
-        this.special_features = special_features;
-    }
-     */
 
     public Film(){
     }
@@ -102,16 +82,16 @@ public class Film implements Serializable {
         return release_year;
     }
 
-    public void setRelease_year(int release_year) {
-        this.release_year = release_year;
+    public void setRelease_year(int releaseYear) {
+        this.release_year = releaseYear;
     }
 
     public int getLanguageId() {
         return language_id;
     }
 
-    public void setLanguageId(int language_id) {
-        this.language_id = language_id;
+    public void setLanguageId(int languageId) {
+        this.language_id = languageId;
     }
 
     public int getLength() {
@@ -134,8 +114,8 @@ public class Film implements Serializable {
         return special_features;
     }
 
-    public void setSpecialFeatures(String special_features) {
-        this.special_features = special_features;
+    public void setSpecialFeatures(String specialFeatures) {
+        this.special_features = specialFeatures;
     }
 
     public Set<Actor> getActors() {
