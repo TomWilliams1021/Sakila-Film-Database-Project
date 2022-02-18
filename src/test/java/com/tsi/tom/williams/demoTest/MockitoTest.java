@@ -9,9 +9,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -124,6 +127,13 @@ public class MockitoTest {
         filmList.add(film2);
         when(sakilaDatabaseApplication.GetAllFilms()).thenReturn(filmList);
         Assertions.assertEquals(filmList, sakilaDatabaseApplication.GetAllFilms(), "Film data was not retreived from Film database table.");
+    }
+
+    @Test
+    public void testGetSpecificFilmById(){
+        Film film1 = new Film("Test Film 1", "Test Description 1", 2006, 1, 90, "PG", "Test Special Features");
+        when(sakilaDatabaseApplication.GetSpecificFilmById(0)).thenReturn(Optional.of(film1));
+        Assertions.assertEquals(Optional.of(film1), sakilaDatabaseApplication.GetSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
     }
 
 }

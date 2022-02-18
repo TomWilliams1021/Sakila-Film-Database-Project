@@ -3,7 +3,11 @@ package com.tsi.tom.williams.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -19,7 +23,7 @@ public class SakilaDatabaseApplication {
 	@Autowired
 	private FilmRepository filmRepository;
 
-	private String save = "Saved";
+	private final String save = "Saved";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository, ActorRepository actorRepository, CategoryRepository categoryRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
@@ -90,5 +94,10 @@ public class SakilaDatabaseApplication {
 	Iterable<Film> GetAllFilms(){
 		return filmRepository.findAll();
 	}
-	////
+
+	@GetMapping("AllFilms/{id}")
+	public @ResponseBody
+	Optional<Film> GetSpecificFilmById(@PathVariable int id){
+		return filmRepository.findById(id);
+	}
 }
