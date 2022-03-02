@@ -18,7 +18,6 @@ public class Film implements Serializable {
     private int release_year;
     private int language_id;
     private int length;
-    private double replacement_cost;  //May need to be added if you decide to do sales.
     private String rating;
     private String special_features;
 

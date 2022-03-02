@@ -138,12 +138,12 @@ public class menuCucumberStepsDeaf {
 
     @When("The categorys are requested")
     public void theCategorysAreRequested() {
-        when(sakilaDBApp.GetAllCategorys()).thenReturn(categoryList);
+        when(sakilaDBApp.getAllCategorys()).thenReturn(categoryList);
     }
 
     @Then("All available categorys should be returned")
     public void allAvailableCategorysShouldBeReturned() {
-        Assertions.assertEquals(categoryList, sakilaDBApp.GetAllCategorys(), "Category data was not retreived from Category database table.");
+        Assertions.assertEquals(categoryList, sakilaDBApp.getAllCategorys(), "Category data was not retreived from Category database table.");
     }
 
     List<Film> filmList = new ArrayList<>();
@@ -158,12 +158,12 @@ public class menuCucumberStepsDeaf {
 
     @When("The films are requested")
     public void theFilmsAreRequested() {
-        when(sakilaDBApp.GetAllFilms()).thenReturn(filmList);
+        when(sakilaDBApp.getAllFilms()).thenReturn(filmList);
     }
 
     @Then("All available films should be returned")
     public void allAvailableFilmsShouldBeReturned() {
-        Assertions.assertEquals(filmList, sakilaDBApp.GetAllFilms(), "Film data was not retreived from Film database table.");
+        Assertions.assertEquals(filmList, sakilaDBApp.getAllFilms(), "Film data was not retreived from Film database table.");
     }
 
     List<Actor> actorList = new ArrayList<>();
@@ -178,12 +178,12 @@ public class menuCucumberStepsDeaf {
 
     @When("The actors are requested")
     public void theActorsAreRequested() {
-        when(sakilaDBApp.GetAllActors()).thenReturn(actorList);
+        when(sakilaDBApp.getAllActors()).thenReturn(actorList);
     }
 
     @Then("All available actors should be returned")
     public void allAvailableActorsShouldBeReturned() {
-        Assertions.assertEquals(actorList, sakilaDBApp.GetAllActors(), "Actor data was not retreived from Actor database table.");
+        Assertions.assertEquals(actorList, sakilaDBApp.getAllActors(), "Actor data was not retreived from Actor database table.");
     }
 
     List<Language> languageList = new ArrayList<>();
@@ -198,12 +198,12 @@ public class menuCucumberStepsDeaf {
 
     @When("The languages are requested")
     public void theLanguagesAreRequested() {
-        when(sakilaDBApp.GetAllLanguages()).thenReturn(languageList);
+        when(sakilaDBApp.getAllLanguages()).thenReturn(languageList);
     }
 
     @Then("All available languages should be returned")
     public void allAvailableLanguagesShouldBeReturned() {
-        Assertions.assertEquals(languageList, sakilaDBApp.GetAllLanguages(), "Languages data was not retreived from Language database table.");
+        Assertions.assertEquals(languageList, sakilaDBApp.getAllLanguages(), "Languages data was not retreived from Language database table.");
     }
 
     Film storedFilm1;
@@ -215,12 +215,12 @@ public class menuCucumberStepsDeaf {
 
     @When("The user requests a specific film")
     public void theUserRequestsASpecificFilm() {
-        when(sakilaDBApp.GetSpecificFilmById(0)).thenReturn(Optional.of(storedFilm1));
+        when(sakilaDBApp.getSpecificFilmById(0)).thenReturn(Optional.of(storedFilm1));
     }
 
     @Then("The specified film will be returned")
     public void theSpecifiedFilmWillBeReturned() {
-        Assertions.assertEquals(Optional.of(storedFilm1), sakilaDBApp.GetSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
+        Assertions.assertEquals(Optional.of(storedFilm1), sakilaDBApp.getSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
     }
 
     int reviewID;

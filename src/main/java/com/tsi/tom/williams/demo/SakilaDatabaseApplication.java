@@ -1,15 +1,11 @@
 package com.tsi.tom.williams.demo;
 
 import com.amazonaws.services.secretsmanager.model.ResourceNotFoundException;
-import org.junit.runners.Parameterized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*")
@@ -27,7 +23,7 @@ public class SakilaDatabaseApplication {
 	@Autowired
 	private FilmRepository filmRepository;
 
-	private final String save = "Saved";
+	private static final String save = "Saved";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository, ActorRepository actorRepository, CategoryRepository categoryRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
@@ -77,46 +73,46 @@ public class SakilaDatabaseApplication {
 
 	@GetMapping("/AllLanguages")
 	public @ResponseBody
-	Iterable<Language> GetAllLanguages(){
+	Iterable<Language> getAllLanguages(){
 		return languageRepository.findAll();
 	}
 
 	@GetMapping("/AllActors")
 	public @ResponseBody
-	Iterable<Actor> GetAllActors(){
+	Iterable<Actor> getAllActors(){
 		return actorRepository.findAll();
 	}
 
 	@GetMapping("/AllCategorys")
 	public @ResponseBody
-	Iterable<Category> GetAllCategorys(){
+	Iterable<Category> getAllCategorys(){
 		return categoryRepository.findAll();
 	}
 
 	@GetMapping("/AllFilms")
 	public @ResponseBody
-	Iterable<Film> GetAllFilms(){
+	Iterable<Film> getAllFilms(){
 		return filmRepository.findAll();
 	}
 
 	@GetMapping("AllFilms/{id}")
 	public @ResponseBody
-	Optional<Film> GetSpecificFilmById(@PathVariable int id){
+	Optional<Film> getSpecificFilmById(@PathVariable int id){
 		return filmRepository.findById(id);
 	}
 
 	@DeleteMapping("/DeleteCategory/{CategoryID}")
-	public @ResponseBody String deleteCategoryByID(@PathVariable int CategoryID){
-		categoryRepository.deleteById(CategoryID);
+	public @ResponseBody String deleteCategoryByID(@PathVariable int categoryID){
+		categoryRepository.deleteById(categoryID);
 		return "deleted";
 	}
 
 	@PutMapping("/UpdateCategory/{CategoryID}")
 	public @ResponseBody
-	String updateCategory(@PathVariable int CategoryID, @RequestParam String newCategoryName){
-		Category updateCategory = categoryRepository.findById(CategoryID).orElseThrow(() ->new ResourceNotFoundException("Review not found"));;
+	String updateCategory(@PathVariable int categoryID, @RequestParam String newCategoryName){
+		Category updateCategory = categoryRepository.findById(categoryID).orElseThrow(() ->new ResourceNotFoundException("Review not found"));
 		updateCategory.setName(newCategoryName);
-		final Category updatedCategory = categoryRepository.save(updateCategory);
+		//final Category updatedCategory = categoryRepository.save(updateCategory);
 		return "updated";
 	}
 

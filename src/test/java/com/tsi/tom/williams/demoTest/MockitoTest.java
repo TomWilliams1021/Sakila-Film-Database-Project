@@ -92,8 +92,8 @@ public class MockitoTest {
         List<Language> languageList = new ArrayList<>();
         languageList.add(lang1);
         languageList.add(lang2);
-        when(sakilaDatabaseApplication.GetAllLanguages()).thenReturn(languageList);
-        Assertions.assertEquals(languageList, sakilaDatabaseApplication.GetAllLanguages(), "Languages data was not retreived from Language database table.");
+        when(sakilaDatabaseApplication.getAllLanguages()).thenReturn(languageList);
+        Assertions.assertEquals(languageList, sakilaDatabaseApplication.getAllLanguages(), "Languages data was not retreived from Language database table.");
     }
 
     @Test
@@ -103,8 +103,8 @@ public class MockitoTest {
         List<Actor> actorList = new ArrayList<>();
         actorList.add(actor1);
         actorList.add(actor2);
-        when(sakilaDatabaseApplication.GetAllActors()).thenReturn(actorList);
-        Assertions.assertEquals(actorList, sakilaDatabaseApplication.GetAllActors(), "Actor data was not retreived from Actor database table.");
+        when(sakilaDatabaseApplication.getAllActors()).thenReturn(actorList);
+        Assertions.assertEquals(actorList, sakilaDatabaseApplication.getAllActors(), "Actor data was not retreived from Actor database table.");
     }
 
     @Test
@@ -114,8 +114,8 @@ public class MockitoTest {
         List<Category> categoryList = new ArrayList<>();
         categoryList.add(cat1);
         categoryList.add(cat2);
-        when(sakilaDatabaseApplication.GetAllCategorys()).thenReturn(categoryList);
-        Assertions.assertEquals(categoryList, sakilaDatabaseApplication.GetAllCategorys(), "Category data was not retreived from Category database table.");
+        when(sakilaDatabaseApplication.getAllCategorys()).thenReturn(categoryList);
+        Assertions.assertEquals(categoryList, sakilaDatabaseApplication.getAllCategorys(), "Category data was not retreived from Category database table.");
     }
 
     @Test
@@ -125,15 +125,15 @@ public class MockitoTest {
         List<Film> filmList = new ArrayList<>();
         filmList.add(film1);
         filmList.add(film2);
-        when(sakilaDatabaseApplication.GetAllFilms()).thenReturn(filmList);
-        Assertions.assertEquals(filmList, sakilaDatabaseApplication.GetAllFilms(), "Film data was not retreived from Film database table.");
+        when(sakilaDatabaseApplication.getAllFilms()).thenReturn(filmList);
+        Assertions.assertEquals(filmList, sakilaDatabaseApplication.getAllFilms(), "Film data was not retreived from Film database table.");
     }
 
     @Test
     public void testGetSpecificFilmById(){
         Film film1 = new Film("Test Film 1", "Test Description 1", 2006, 1, 90, "PG", "Test Special Features");
-        when(sakilaDatabaseApplication.GetSpecificFilmById(0)).thenReturn(Optional.of(film1));
-        Assertions.assertEquals(Optional.of(film1), sakilaDatabaseApplication.GetSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
+        when(sakilaDatabaseApplication.getSpecificFilmById(0)).thenReturn(Optional.of(film1));
+        Assertions.assertEquals(Optional.of(film1), sakilaDatabaseApplication.getSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
     }
 
     @Test
