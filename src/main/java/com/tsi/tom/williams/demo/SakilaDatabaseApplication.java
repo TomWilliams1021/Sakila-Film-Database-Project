@@ -112,7 +112,7 @@ public class SakilaDatabaseApplication {
 	String updateCategory(@PathVariable int categoryID, @RequestParam String newCategoryName){
 		Category updateCategory = categoryRepository.findById(categoryID).orElseThrow(() ->new ResourceNotFoundException("Review not found"));
 		updateCategory.setName(newCategoryName);
-		//final Category updatedCategory = categoryRepository.save(updateCategory);
+
 		return "updated";
 	}
 

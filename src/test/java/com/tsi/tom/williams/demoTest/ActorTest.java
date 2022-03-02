@@ -9,7 +9,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ActorTest {
+class ActorTest {
 
     private Actor testActor = new Actor("Fake","Actor");
     private Set<Film> testFilm = new HashSet<>();

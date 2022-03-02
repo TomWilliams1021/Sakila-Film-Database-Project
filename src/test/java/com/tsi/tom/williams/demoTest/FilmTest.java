@@ -10,7 +10,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FilmTest {
+class FilmTest {
 
     private Film testFilm = new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features");
 
