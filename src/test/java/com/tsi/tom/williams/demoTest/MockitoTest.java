@@ -136,4 +136,14 @@ public class MockitoTest {
         Assertions.assertEquals(Optional.of(film1), sakilaDatabaseApplication.GetSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
     }
 
+    @Test
+    public void testDeleteCategory(){
+        String actual = sakilaDatabaseApplication.deleteCategoryByID(1);
+        String expected = "deleted";
+        ArgumentCaptor<Integer> categoryArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(categoryRepository).deleteById(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "The specified category was not successfully deleted.");
+    }
+
 }

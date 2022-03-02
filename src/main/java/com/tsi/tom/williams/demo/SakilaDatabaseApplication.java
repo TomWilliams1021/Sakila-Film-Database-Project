@@ -1,5 +1,7 @@
 package com.tsi.tom.williams.demo;
 
+import com.amazonaws.services.secretsmanager.model.ResourceNotFoundException;
+import org.junit.runners.Parameterized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @SpringBootApplication
 @RestController
 @RequestMapping("/Home")
@@ -62,6 +66,7 @@ public class SakilaDatabaseApplication {
 		return save;
 	}
 
+
 	@PostMapping("/AddCategory")
 	public @ResponseBody
 	String addCategory(@RequestParam String name){
@@ -69,7 +74,6 @@ public class SakilaDatabaseApplication {
 		categoryRepository.save(addCategory);
 		return save;
 	}
-
 
 	@GetMapping("/AllLanguages")
 	public @ResponseBody
@@ -100,4 +104,21 @@ public class SakilaDatabaseApplication {
 	Optional<Film> GetSpecificFilmById(@PathVariable int id){
 		return filmRepository.findById(id);
 	}
+
+	@DeleteMapping("/DeleteCategory/{CategoryID}")
+	public @ResponseBody String deleteCategoryByID(@PathVariable int CategoryID){
+		categoryRepository.deleteById(CategoryID);
+		return "deleted";
+	}
+
+	@PutMapping("/UpdateCategory/{CategoryID}")
+	public @ResponseBody
+	String updateCategory(@PathVariable int CategoryID, @RequestParam String newCategoryName){
+		Category updateCategory = categoryRepository.findById(CategoryID).orElseThrow(() ->new ResourceNotFoundException("Review not found"));;
+		updateCategory.setName(newCategoryName);
+		final Category updatedCategory = categoryRepository.save(updateCategory);
+		return "updated";
+	}
+
+
 }

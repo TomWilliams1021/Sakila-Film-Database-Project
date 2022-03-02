@@ -10,8 +10,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class menuCucumberStepsDeaf {
@@ -120,5 +124,126 @@ public class menuCucumberStepsDeaf {
         ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
         verify(filmRepository).save(filmArgumentCaptor.capture());
         filmArgumentCaptor.getValue();
+    }
+
+    List<Category> categoryList = new ArrayList<>();
+    @Given("There are categorys available")
+    public void thereAreCategorysAvailable() {
+        setup();
+        Category cat1 = new Category("TestCat1");
+        Category cat2 = new Category("TestCat2");
+        categoryList.add(cat1);
+        categoryList.add(cat2);
+    }
+
+    @When("The categorys are requested")
+    public void theCategorysAreRequested() {
+        when(sakilaDBApp.GetAllCategorys()).thenReturn(categoryList);
+    }
+
+    @Then("All available categorys should be returned")
+    public void allAvailableCategorysShouldBeReturned() {
+        Assertions.assertEquals(categoryList, sakilaDBApp.GetAllCategorys(), "Category data was not retreived from Category database table.");
+    }
+
+    List<Film> filmList = new ArrayList<>();
+    @Given("There are films available")
+    public void thereAreFilmsAvailable() {
+        setup();
+        Film film1 = new Film("Test Film 1", "Test Description 1", 2006, 1, 90, "PG", "Test Special Features");
+        Film film2 = new Film("Test Film 2", "Test Description 2", 2006, 1, 90, "PG", "Test Special Features");
+        filmList.add(film1);
+        filmList.add(film2);
+    }
+
+    @When("The films are requested")
+    public void theFilmsAreRequested() {
+        when(sakilaDBApp.GetAllFilms()).thenReturn(filmList);
+    }
+
+    @Then("All available films should be returned")
+    public void allAvailableFilmsShouldBeReturned() {
+        Assertions.assertEquals(filmList, sakilaDBApp.GetAllFilms(), "Film data was not retreived from Film database table.");
+    }
+
+    List<Actor> actorList = new ArrayList<>();
+    @Given("There are actors available")
+    public void thereAreActorsAvailable() {
+        setup();
+        Actor actor1 = new Actor("Test", "Actor1");
+        Actor actor2 = new Actor("Test", "Actor2");
+        actorList.add(actor1);
+        actorList.add(actor2);
+    }
+
+    @When("The actors are requested")
+    public void theActorsAreRequested() {
+        when(sakilaDBApp.GetAllActors()).thenReturn(actorList);
+    }
+
+    @Then("All available actors should be returned")
+    public void allAvailableActorsShouldBeReturned() {
+        Assertions.assertEquals(actorList, sakilaDBApp.GetAllActors(), "Actor data was not retreived from Actor database table.");
+    }
+
+    List<Language> languageList = new ArrayList<>();
+    @Given("There are languages available")
+    public void thereAreLanguagesAvailable() {
+        setup();
+        Language lang1 = new Language("TestL1");
+        Language lang2 = new Language("TestL2");
+        languageList.add(lang1);
+        languageList.add(lang2);
+    }
+
+    @When("The languages are requested")
+    public void theLanguagesAreRequested() {
+        when(sakilaDBApp.GetAllLanguages()).thenReturn(languageList);
+    }
+
+    @Then("All available languages should be returned")
+    public void allAvailableLanguagesShouldBeReturned() {
+        Assertions.assertEquals(languageList, sakilaDBApp.GetAllLanguages(), "Languages data was not retreived from Language database table.");
+    }
+
+    Film storedFilm1;
+    @Given("There are films available to select from")
+    public void thereAreFilmsAvailableToSelectFrom() {
+        setup();
+        storedFilm1 = new Film("Test Film 1", "Test Description 1", 2006, 1, 90, "PG", "Test Special Features");
+    }
+
+    @When("The user requests a specific film")
+    public void theUserRequestsASpecificFilm() {
+        when(sakilaDBApp.GetSpecificFilmById(0)).thenReturn(Optional.of(storedFilm1));
+    }
+
+    @Then("The specified film will be returned")
+    public void theSpecifiedFilmWillBeReturned() {
+        Assertions.assertEquals(Optional.of(storedFilm1), sakilaDBApp.GetSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
+    }
+
+    int reviewID;
+    String actual;
+    String expected = "deleted";
+    @Given("There are categorys to select from")
+    public void thereAreCategorysToSelectFrom() {
+        setup();
+        reviewID = 1;
+    }
+
+    @When("A category is selected for deletion")
+    public void aCategoryIsSelectedForDeletion() {
+        actual = sakilaDBApp.deleteCategoryByID(reviewID);
+    }
+
+    @Then("The category should be deleted")
+    public void theCategoryShouldBeDeleted() {
+        expected = "deleted";
+        Assertions.assertEquals(expected, actual, "The specified category was not successfully deleted.");
+
+        ArgumentCaptor<Integer> categoryArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(categoryRepository).deleteById(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
     }
 }
