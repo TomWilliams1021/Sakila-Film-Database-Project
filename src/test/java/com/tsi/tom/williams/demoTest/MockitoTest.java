@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class) //Inheriting characteristics needed to use mockito.
-public class MockitoTest {
+class MockitoTest {
     private SakilaDatabaseApplication sakilaDatabaseApplication;
     @Mock
     private LanguageRepository languageRepository;  //Creating a fake version of the language repo for testing.
@@ -41,7 +41,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testAddLanguage(){
+    void testAddLanguage(){
         Language saveLanguage = new Language("testLanguage");   //Post "testLanguage" as new language into mock DB.
         String expected = "Saved";  //Expected response when a language is added.
         String actual = sakilaDatabaseApplication.addLanguage(saveLanguage.getName());
@@ -52,7 +52,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testAddFilm(){
+    void testAddFilm(){
         Film saveFilm = new Film("Test Film", "Test Description", 2006, 1, 90, "PG", "Test Special Features");
         String expected = "Saved";
         String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(), saveFilm.getDescription(),saveFilm.getRelease_year(),saveFilm.getLanguageId(), saveFilm.getLength(), saveFilm.getRating(), saveFilm.getSpecialFeatures());
@@ -64,7 +64,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testAddCategory(){
+    void testAddCategory(){
         Category saveCategory = new Category(("Test Category"));
         String expected = "Saved";
         String actual = sakilaDatabaseApplication.addCategory(saveCategory.getName());
@@ -75,7 +75,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testAddActor(){
+    void testAddActor(){
         Actor saveActor = new Actor("Test","Actor");
         String expected = "Saved";
         String actual = sakilaDatabaseApplication.addActor(saveActor.getFirstName(), saveActor.getLastName());
@@ -86,7 +86,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testGetLanguages(){
+    void testGetLanguages(){
         Language lang1 = new Language("TestL1");
         Language lang2 = new Language("TestL2");
         List<Language> languageList = new ArrayList<>();
@@ -97,7 +97,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testGetActors(){
+    void testGetActors(){
         Actor actor1 = new Actor("Test", "Actor1");
         Actor actor2 = new Actor("Test", "Actor2");
         List<Actor> actorList = new ArrayList<>();
@@ -108,7 +108,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testGetCategorys(){
+    void testGetCategorys(){
         Category cat1 = new Category("TestCat1");
         Category cat2 = new Category("TestCat2");
         List<Category> categoryList = new ArrayList<>();
@@ -119,7 +119,7 @@ public class MockitoTest {
     }
 
     @Test
-    public void testGetFilms(){
+    void testGetFilms(){
         Film film1 = new Film("Test Film 1", "Test Description 1", 2006, 1, 90, "PG", "Test Special Features");
         Film film2 = new Film("Test Film 2", "Test Description 2", 2006, 1, 90, "PG", "Test Special Features");
         List<Film> filmList = new ArrayList<>();
@@ -130,14 +130,14 @@ public class MockitoTest {
     }
 
     @Test
-    public void testGetSpecificFilmById(){
+    void testGetSpecificFilmById(){
         Film film1 = new Film("Test Film 1", "Test Description 1", 2006, 1, 90, "PG", "Test Special Features");
         when(sakilaDatabaseApplication.getSpecificFilmById(0)).thenReturn(Optional.of(film1));
         Assertions.assertEquals(Optional.of(film1), sakilaDatabaseApplication.getSpecificFilmById(0), "Film specified by id was not retrieved from the Film database.");
     }
 
     @Test
-    public void testDeleteCategory(){
+    void testDeleteCategory(){
         String actual = sakilaDatabaseApplication.deleteCategoryByID(1);
         String expected = "deleted";
         ArgumentCaptor<Integer> categoryArgumentCaptor = ArgumentCaptor.forClass(Integer.class);

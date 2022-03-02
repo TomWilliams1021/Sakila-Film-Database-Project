@@ -23,7 +23,7 @@ public class SakilaDatabaseApplication {
 	@Autowired
 	private FilmRepository filmRepository;
 
-	private static final String save = "Saved";
+	private static final String SAVE = "Saved";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository, ActorRepository actorRepository, CategoryRepository categoryRepository, FilmRepository filmRepository){
 		this.languageRepository = languageRepository;
@@ -43,7 +43,7 @@ public class SakilaDatabaseApplication {
 	String addLanguage(@RequestParam String name) {
 		Language addLanguage = new Language(name);
 		languageRepository.save(addLanguage);
-		return save;
+		return SAVE;
 	}
 
 	@PostMapping("/AddActor")
@@ -51,7 +51,7 @@ public class SakilaDatabaseApplication {
 	String addActor(@RequestParam String first_name, String last_name){
 		Actor addActor = new Actor(first_name, last_name);
 		actorRepository.save(addActor);
-		return save;
+		return SAVE;
 	}
 
 	@PostMapping("/AddFilm")
@@ -59,7 +59,7 @@ public class SakilaDatabaseApplication {
 	String addFilm(@RequestParam String title, String description, int release_year, int language_id, int length, String rating, String special_features){
 		Film addFilm = new Film(title, description, release_year, language_id, length, rating, special_features);
 		filmRepository.save(addFilm);
-		return save;
+		return SAVE;
 	}
 
 
@@ -68,7 +68,7 @@ public class SakilaDatabaseApplication {
 	String addCategory(@RequestParam String name){
 		Category addCategory = new Category(name);
 		categoryRepository.save(addCategory);
-		return save;
+		return SAVE;
 	}
 
 	@GetMapping("/AllLanguages")
