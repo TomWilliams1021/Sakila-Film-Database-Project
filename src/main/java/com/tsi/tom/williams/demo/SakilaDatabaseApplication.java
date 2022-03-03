@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "34.239.182.84")
 @SpringBootApplication
 @RestController
 @RequestMapping("/Home")
@@ -101,13 +101,13 @@ public class SakilaDatabaseApplication {
 		return filmRepository.findById(id);
 	}
 
-	@DeleteMapping("/DeleteCategory/{CategoryID}")
+	@DeleteMapping("/DeleteCategory/{categoryID}")
 	public @ResponseBody String deleteCategoryByID(@PathVariable int categoryID){
 		categoryRepository.deleteById(categoryID);
 		return "deleted";
 	}
 
-	@PutMapping("/UpdateCategory/{CategoryID}")
+	@PutMapping("/UpdateCategory/{categoryID}")
 	public @ResponseBody
 	String updateCategory(@PathVariable int categoryID, @RequestParam String newCategoryName){
 		Category updateCategory = categoryRepository.findById(categoryID).orElseThrow(() ->new ResourceNotFoundException("Review not found"));
